@@ -109,8 +109,8 @@
                         <i>e</i> = <span class="e"></span>
                     </div>
                     PBS = <span class="pbs"></span>&deg;
-                    <div class="explanation-link" data-explanation="#v_m-explanation">
-                        v - M = <span class="v_m"></span>&deg;
+                    <div class="explanation-link" data-explanation="#nu_m-explanation">
+                        &nu; - M = <span class="nu_m"></span>&deg;
                     </div>
                     &nu; = <span class="nu"></span>&deg;
                     <div class="explanation-link" data-explanation="#l_s-explanation">
@@ -252,10 +252,10 @@
                         ever so slightly over time and for Mars is given by <i>e</i> = 0.09340 &plus; 2.477 &times 10<sup>-9</sup> / day &Delta;t<sub>J2000</sub> = <span class="e"></span>.
                     </p>
                 </div>
-                <div class="explanation" id="v_m-explanation">
+                <div class="explanation" id="nu_m-explanation">
                     <div class="clock">
                         <h3>Equation of Center</h3>
-                        <span class="time"><span class="v_m"></span>&deg;</span>
+                        <span class="time"><span class="nu_m"></span>&deg;</span>
                     </div>
                     <p>
                         The difference between the actual position of the Sun and the fictitious mean Sun is the same as
@@ -290,7 +290,7 @@
                         We can now calculate the actual position of the Sun as follows:
                     </p>
                     <p>
-                        <i>L</i><sub>S</sub> = &alpha;<sub>FMS</sub> &plus; (v &minus; M)
+                        <i>L</i><sub>S</sub> = &alpha;<sub>FMS</sub> &plus; (&nu; &minus; M)
                     </p>
                     <p>
                         Remember, this is not the daily motion of the Sun caused by Mars's rotation,
@@ -345,15 +345,15 @@
                     0.0021 * cos((0.985626 * j2000 /  2.1354) +  15.704) +
                     0.0020 * cos((0.985626 * j2000 /  2.4694) +  95.528) +
                     0.0018 * cos((0.985626 * j2000 / 32.8493) +  49.095);
-                var v_m = (10.691 + 3.0E-7 * j2000) * sin(m) +
+                var nu_m = (10.691 + 3.0E-7 * j2000) * sin(m) +
                     0.623 * sin(2 * m) +
                     0.050 * sin(3 * m) +
                     0.005 * sin(4 * m) +
                     0.0005 * sin(5 * m) +
                     pbs;
-                var nu = v_m + m;
-                var l_s = (alpha_fms + v_m) % 360;
-                var eot = 2.861 * sin(2 * l_s) - 0.071 * sin(4 * l_s) + 0.002 * sin(6 * l_s) - v_m;
+                var nu = nu_m + m;
+                var l_s = (alpha_fms + nu_m) % 360;
+                var eot = 2.861 * sin(2 * l_s) - 0.071 * sin(4 * l_s) + 0.002 * sin(6 * l_s) - nu_m;
                 var eot_h = eot * 24 / 360;
                 var mtc = (24 * (((jd_tt - 2451549.5) / 1.027491252) + 44796.0 - 0.00096)) % 24;
                 
@@ -380,7 +380,7 @@
                 $(".alpha_fms").text(alpha_fms.toFixed(5));
                 $(".pbs").text(pbs.toFixed(5));
                 $(".e").text(e.toFixed(5));
-                $(".v_m").text(v_m.toFixed(5));
+                $(".nu_m").text(nu_m.toFixed(5));
                 $(".nu").text(nu.toFixed(5));
                 $(".l_s").text(l_s.toFixed(5));
                 $(".eot").text(eot.toFixed(5));
