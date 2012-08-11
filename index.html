@@ -99,7 +99,12 @@
                 <h2>Mars</h2>
                 
                 <div>
-                    M = <span class="m"></span>&deg;<br>
+                    <div class="explanation-link" data-explanation="#m-explanation">
+                        M = <span class="m"></span>&deg;
+                    </div>
+                </div>
+                
+                <div>
                     &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;<br>
                     PBS = <span class="pbs"></span>&deg;<br>
                     v - M = <span class="v_m"></span>&deg;<br>
@@ -173,6 +178,33 @@
                     </p>
                     <p>
                         &Delta;t<sub>J2000</sub> = JD<sub>TT</sub> - 2451545.0
+                    </p>
+                </div>
+                <div class="explanation" id="m-explanation">
+                    <div class="clock">
+                        <h3>Mars Mean Anomaly</h3>
+                        <span class="time"><span class="m"></span>&deg;</span>
+                    </div>
+                    <p>
+                        The mean anomaly is a measure of where an orbiting body is in its orbit. More precisely,
+                        it's a measure of how far into the full orbit the body is since its last periapsis (the point
+                        in the ellipse closest to the focus).
+                    </p>
+                    <p>
+                        The mean anomaly is the ratio into the full orbit, multiplied by 2&pi; (radians) or 360&deg; although the value doesn't truly correspond to any angle. The mean anomaly is proportional to time (and
+                        hence area swept) rather that the actual angle of the body from the
+                        focus (which would be the <i>true anomaly</i>).
+                    </p>
+                    <p>
+                        So the mean anomaly can be calculated from &Delta;t<sub>J2000</sub> if we know the mean
+                        anomaly at the J2000 epoch and the full orbit time.
+                        Expanded, this gives us:
+                    </p>
+                    <p>
+                        M = 19.3870&deg; + 0.52402075&deg;&Delta;t<sub>J2000</sub>
+                    </p>
+                    <p>
+                        for Mars.
                     </p>
                 </div>
             </div>
