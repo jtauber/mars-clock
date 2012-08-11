@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700,300' rel='stylesheet' type='text/css'>
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,700,300,400" rel="stylesheet" type="text/css">
 
         <style>
             body {
@@ -9,16 +9,16 @@
                 color: #222;
             }
             h1, h2 {
-                margin-top: 2em;
+                margin-top: 1.5em;
                 font-weight: 700;
             }
-            h2 span {
+            h1 span, h2 span {
                 font-weight: 300;
                 color: #666;
                 font-size: 70%;
             }
              .container {
-                width: 960px;
+                width: 600px;
                 margin: 50px auto;
                 text-align: center;
             }
@@ -37,13 +37,28 @@
                 font-size: 200%;
                 
             }
+            .credits {
+                font-weight: 400;
+                margin-top: 50px;
+                font-size: 8pt;
+                
+            }
+            a {
+                color: #222;
+            }
         </style>
     </head>
     
     <body>
         <div class="container">
-            <h1>Mars Clock</h1>
+            <h1>Mars Clock <span>by James Tauber</span></h1>
             
+            <div style="margin-bottom: 50px;">
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="jtauber" data-related="jtauber">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<a href="https://twitter.com/jtauber" class="twitter-follow-button" data-show-count="true">Follow @jtauber</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
             <h2>Earth</h2>
             
             <p>
@@ -69,9 +84,10 @@
                 EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span> h<br>
             </p>
 
-            <p>
-                MTC = <b><span class="mtc"></span></b>
-            </p>
+            <div class="clock">
+                <h3>Coordinated Mars Time</h3>
+                <div class="time mtc"></div>
+            </div>
 
             <h2>Curiosity<br><span>137.4&deg;E longitude</span></h2>
 
@@ -85,6 +101,14 @@
                 <h3>Local True Solar Time</h3>
                 <div class="time ltst"></div>
             </div>
+            
+            
+            <div class="credits">
+                Formulae from
+                Allison, M., and M. McEwen 2000. <a href="http://pubs.giss.nasa.gov/abs/al05000n.html">A post-Pathfinder evaluation of aerocentric solar coordinates with improved timing recipes for Mars seasonal/diurnal climate studies.</a> <i>Planet. Space Sci.</i> <b>48</b>, 215-235.
+                and <a href="http://www.giss.nasa.gov/tools/mars24/help/algorithm.html">Mars24 Algorithm and Worked Examples</a>
+            </div>
+            
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script>
@@ -157,6 +181,19 @@
                 update();
                 setInterval("update()", 10);
             });
+        </script>
+        <script type="text/javascript">
+          var _gauges = _gauges || [];
+          (function() {
+            var t   = document.createElement('script');
+            t.type  = 'text/javascript';
+            t.async = true;
+            t.id    = 'gauges-tracker';
+            t.setAttribute('data-site-id', '4f7c4470613f5d112800015d');
+            t.src = '//secure.gaug.es/track.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(t, s);
+          })();
         </script>
     </body>
 </html>
