@@ -234,8 +234,18 @@
                 
                 var lambda = 360 - 137.4;
                 
-                var lmst = mtc - lambda * 24 / 360;
-                var ltst = lmst + eot * 24 / 360;
+                var lmst = (mtc - lambda * 24 / 360);
+                if (lmst < 0) {
+                    lmst += 24;
+                } else if (lmst >= 24) {
+                    lmst -= 24;
+                }
+                var ltst = (lmst + eot * 24 / 360);
+                if (ltst < 0) {
+                    ltst += 24;
+                } else if (ltst >= 24) {
+                    ltst -= 24;
+                }
                 
                 $(".millis").text(millis);
                 $(".jd_ut").text(jd_ut.toFixed(5));
