@@ -9,7 +9,7 @@
                 color: #222;
             }
             h1, h2 {
-                margin-top: 1.5em;
+                margin: 1.5em 0 0;
                 font-weight: 700;
             }
             h1 span, h2 span {
@@ -53,6 +53,7 @@
         <div class="container">
             <h1>Mars Clock <span>by James Tauber</span></h1>
             
+            <p>This is a live calculation of the time on Mars, both Coordinated Time (think UTC but for Mars) and at the Curiosity site. I plan to further elaborate on these calculations but wanted to get something up quickly.</p>
             <div style="margin-bottom: 50px;">
 <a href="https://twitter.com/share" class="twitter-share-button" data-via="jtauber" data-related="jtauber">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
@@ -61,12 +62,12 @@
 </div>
             <h2>Earth</h2>
             
-            <p>
+            <div>
                 <span class="utc-time"></span><br>
                 <i>millis</i> = <span class="millis"></span><br>
                 JD<sub>UT</sub> = <span class="jd_ut"></span><br>
                 JD<sub>TT</sub> = <span class="jd_tt"></span>
-            </p>
+            </div>
             
             <div class="clock">
                 <h3>&Delta;t<sub>J2000</sub></h3>
@@ -75,28 +76,27 @@
             
             <h2>Mars</h2>
             
-            </p>
+            <div>
                 M = <span class="m"></span>&deg;<br>
                 &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;<br>
                 PBS = <span class="pbs"></span>&deg;<br>
                 v - M = <span class="v_m"></span>&deg;<br>
                 L<sub>s</sub> = <span class="l_s"></span>&deg;<br>
-                EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span> h<br>
-            </p>
-
+                EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span>h
+            </div>
+            
             <div class="clock">
                 <h3>Coordinated Mars Time</h3>
                 <div class="time mtc"></div>
             </div>
-
+            
             <h2>Curiosity<br><span>137.4&deg;E longitude</span></h2>
-
             
             <div class="clock">
                 <h3>Local Mean Solar Time</h3>
                 <div class="time lmst"></div>
             </div>
-
+            
             <div class="clock">
                 <h3>Local True Solar Time</h3>
                 <div class="time ltst"></div>
