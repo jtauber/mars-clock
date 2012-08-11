@@ -276,6 +276,9 @@
                         perturbations caused by other planets previously calculated.
                     </p>
                     <p>Once they have been added, we have our equation of center.</p>
+                    <p>
+                        By adding this to our mean anomaly, M, we also get our true anomaly &nu; = <span class="nu"></span>&deg;
+                    </p>
                 </div>
                 <div class="explanation" id="l_s-explanation">
                     <div class="clock">
@@ -347,6 +350,7 @@
                     0.005 * sin(4 * m) +
                     0.0005 * sin(5 * m) +
                     pbs;
+                var nu = v_m + m;
                 var l_s = (alpha_fms + v_m) % 360;
                 var eot = 2.861 * sin(2 * l_s) - 0.071 * sin(4 * l_s) + 0.002 * sin(6 * l_s) - v_m;
                 var eot_h = eot * 24 / 360;
@@ -376,6 +380,7 @@
                 $(".pbs").text(pbs.toFixed(5));
                 $(".e").text(e.toFixed(5));
                 $(".v_m").text(v_m.toFixed(5));
+                $(".nu").text(nu.toFixed(5));
                 $(".l_s").text(l_s.toFixed(5));
                 $(".eot").text(eot.toFixed(5));
                 $(".eot_h").text(eot_h.toFixed(5));
