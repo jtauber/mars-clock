@@ -98,30 +98,33 @@
                 
                 <h2>Mars</h2>
                 
-                <div>
-                    <div class="explanation-link" data-explanation="#m-explanation">
-                        M = <span class="m"></span>&deg;
-                    </div>
-                    <div class="explanation-link" data-explanation="#alpha_fms-explanation">
-                        &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;
-                    </div>
-                    <div class="explanation-link" data-explanation="#e-explanation">
-                        <i>e</i> = <span class="e"></span>
-                    </div>
-                    PBS = <span class="pbs"></span>&deg;
-                    <div class="explanation-link" data-explanation="#nu_m-explanation">
-                        &nu; - M = <span class="nu_m"></span>&deg;
-                    </div>
-                    &nu; = <span class="nu"></span>&deg;
-                    <div class="explanation-link" data-explanation="#l_s-explanation">
-                        <i>L</i><sub>s</sub> = <span class="l_s"></span>&deg;<br>
-                    </div>
-                    EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span>h
-                </div>
-                
-                <div class="clock">
+                <div class="clock explanation-link" data-explanation="#mtc-explanation">
                     <h3>Coordinated Mars Time</h3>
                     <div class="time mtc"></div>
+                </div>
+                
+
+                <div class="explanation-link" data-explanation="#m-explanation">
+                    M = <span class="m"></span>&deg;
+                </div>
+                <div class="explanation-link" data-explanation="#alpha_fms-explanation">
+                    &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;
+                </div>
+                <div class="explanation-link" data-explanation="#e-explanation">
+                    <i>e</i> = <span class="e"></span>
+                </div>
+                <div>
+                    PBS = <span class="pbs"></span>&deg;
+                </div>
+                <div class="explanation-link" data-explanation="#nu_m-explanation">
+                    &nu; - M = <span class="nu_m"></span>&deg;
+                </div>
+                &nu; = <span class="nu"></span>&deg;
+                <div class="explanation-link" data-explanation="#l_s-explanation">
+                    <i>L</i><sub>s</sub> = <span class="l_s"></span>&deg;<br>
+                </div>
+                <div>
+                    EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span>h
                 </div>
                 
                 <h2>Curiosity<br><span>137.4&deg;E longitude</span></h2>
@@ -177,7 +180,7 @@
                         <span class="time j2000"></span>
                     </div>
                     <p>
-                        This is the number we're going to use as the input to our Mars calculations.
+                        This is the number we're going to use as the input to many of our Mars calculations.
                         It's the number of (fractional) days since<br>12:00 on 1 January 2000<br>in Terrestrial Time.
                     </p>
                     <p>
@@ -185,6 +188,19 @@
                     </p>
                     <p>
                         &Delta;t<sub>J2000</sub> = JD<sub>TT</sub> - 2451545.0
+                    </p>
+                </div>
+                <div class="explanation" id="mtc-explanation">
+                    <div class="clock">
+                        <h3>Coordinated Mars Time</h3>
+                        <div class="time mtc"></div>
+                    </div>
+                    <p>
+                        <i>Coordinated Mars Time</i> (or MTC) is like UTC but for Mars. Because it is just a mean time,
+                        it can be calculated directly from the Julian Date as follows:
+                    </p>
+                    <p>
+                        MTC = (24 h &times; ([(JD<sub>TT</sub> &minus; 2451549.5) / 1.027491252] &plus; 44796.0 &minus; 0.00096 )) mod 24
                     </p>
                 </div>
                 <div class="explanation" id="m-explanation">
