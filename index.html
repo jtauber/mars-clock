@@ -102,17 +102,13 @@
                     <div class="explanation-link" data-explanation="#m-explanation">
                         M = <span class="m"></span>&deg;
                     </div>
-                </div>
-                
-                <div>
                     <div class="explanation-link" data-explanation="#alpha_fms-explanation">
                         &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;
                     </div>
-                </div>
-                
-                <div>
-                    PBS = <span class="pbs"></span>&deg;<br>
-                    v - M = <span class="v_m"></span>&deg;<br>
+                    PBS = <span class="pbs"></span>&deg;
+                    <div class="explanation-link" data-explanation="#v_m-explanation">
+                        v - M = <span class="v_m"></span>&deg;
+                    </div>
                     L<sub>s</sub> = <span class="l_s"></span>&deg;<br>
                     EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span>h
                 </div>
@@ -240,6 +236,37 @@
                         &alpha;<sub>FMS</sub> = 270.3863&deg; + 0.52403840&deg;&Delta;t<sub>J2000</sub>
                     </p>
                 </div>
+                <div class="explanation" id="v_m-explanation">
+                    <div class="clock">
+                        <h3>Equation of Center</h3>
+                        <span class="time"><span class="v_m"></span>&deg;</span>
+                    </div>
+                    <p>
+                        The difference between the actual position of the Sun and the fictitious mean Sun is the same as
+                        the difference between the true anomaly and mean anomaly. This is called the <i>Equation of Center</i>.
+                    </p>
+                    <p>
+                        For a two-body Kepler orbit, this difference can be approximated using a Fourier-Bessel series given 
+                        the mean anomaly M and eccentricity <i>e</i>.
+                    </p>
+                    <p>
+                        The eccentricity is the deviation of the orbit's ellipse from being a perfect circle. It varies
+                        ever so slightly over time and for Mars is given by <i>e</i> = 0.09340 &plus; 2.477 &times 10<sup>-9</sup> / day &Delta;t<sub>J2000</sub> = <span class="e"></span>.
+                    </p>
+                    <p>Once this is plugged into the Fourier-Bessel series example, the result is:</p>
+                    <p>
+                        (10.691&deg; &plus; 3&deg; &times 10<sup>-7</sup> &Delta;<i>t</i><sub>J2000</sub>) sin <i>M</i>
+                        <br>&plus; 0.623&deg; sin 2<i>M</i>
+                        <br>&plus; 0.050&deg; sin 3<i>M</i>
+                        <br>&plus; 0.005&deg; sin 4<i>M</i>
+                        <br>&plus; 0.0005&deg; sin 5<i>M</i>
+                    </p>
+                    <p>
+                        We're not quite done yet as the above assumes a two-body Kepler motion and we need to include the 
+                        perturbations caused by other planets previously calculated.
+                    </p>
+                    <p>Once they have been added, we have our equation of center.</p>
+                </div>
             </div>
             
             <div class="clear"></div>
@@ -278,6 +305,7 @@
                 var j2000 = jd_tt - 2451545.0;
                 var m = (19.3870 + 0.52402075 * j2000) % 360;
                 var alpha_fms = (270.3863 + 0.52403840 * j2000) % 360;
+                var e = (0.09340 + 2.477E-9 * j2000);
                 var pbs =
                     0.0071 * cos((0.985626 * j2000 /  2.2353) +  49.409) +
                     0.0057 * cos((0.985626 * j2000 /  2.7543) + 168.173) +
@@ -319,6 +347,7 @@
                 $(".m").text(m.toFixed(5));
                 $(".alpha_fms").text(alpha_fms.toFixed(5));
                 $(".pbs").text(pbs.toFixed(5));
+                $(".e").text(e.toFixed(5));
                 $(".v_m").text(v_m.toFixed(5));
                 $(".l_s").text(l_s.toFixed(5));
                 $(".eot").text(eot.toFixed(5));
