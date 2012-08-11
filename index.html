@@ -105,6 +105,9 @@
                     <div class="explanation-link" data-explanation="#alpha_fms-explanation">
                         &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;
                     </div>
+                    <div class="explanation-link" data-explanation="#e-explanation">
+                        <i>e</i> = <span class="e"></span>
+                    </div>
                     PBS = <span class="pbs"></span>&deg;
                     <div class="explanation-link" data-explanation="#v_m-explanation">
                         v - M = <span class="v_m"></span>&deg;
@@ -236,6 +239,16 @@
                         &alpha;<sub>FMS</sub> = 270.3863&deg; + 0.52403840&deg;&Delta;t<sub>J2000</sub>
                     </p>
                 </div>
+                <div class="explanation" id="e-explanation">
+                    <div class="clock">
+                        <h3>Eccentricity</h3>
+                        <span class="time"><span class="e"></span></span>
+                    </div>
+                    <p>
+                        The eccentricity is the deviation of the orbit's ellipse from being a perfect circle. It varies
+                        ever so slightly over time and for Mars is given by <i>e</i> = 0.09340 &plus; 2.477 &times 10<sup>-9</sup> / day &Delta;t<sub>J2000</sub> = <span class="e"></span>.
+                    </p>
+                </div>
                 <div class="explanation" id="v_m-explanation">
                     <div class="clock">
                         <h3>Equation of Center</h3>
@@ -247,13 +260,8 @@
                     </p>
                     <p>
                         For a two-body Kepler orbit, this difference can be approximated using a Fourier-Bessel series given 
-                        the mean anomaly M and eccentricity <i>e</i>.
+                        the mean anomaly M and eccentricity <i>e</i>. This results in:
                     </p>
-                    <p>
-                        The eccentricity is the deviation of the orbit's ellipse from being a perfect circle. It varies
-                        ever so slightly over time and for Mars is given by <i>e</i> = 0.09340 &plus; 2.477 &times 10<sup>-9</sup> / day &Delta;t<sub>J2000</sub> = <span class="e"></span>.
-                    </p>
-                    <p>Once this is plugged into the Fourier-Bessel series example, the result is:</p>
                     <p>
                         (10.691&deg; &plus; 3&deg; &times 10<sup>-7</sup> &Delta;<i>t</i><sub>J2000</sub>) sin <i>M</i>
                         <br>&plus; 0.623&deg; sin 2<i>M</i>
