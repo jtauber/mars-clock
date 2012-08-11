@@ -105,7 +105,12 @@
                 </div>
                 
                 <div>
-                    &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;<br>
+                    <div class="explanation-link" data-explanation="#alpha_fms-explanation">
+                        &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;
+                    </div>
+                </div>
+                
+                <div>
                     PBS = <span class="pbs"></span>&deg;<br>
                     v - M = <span class="v_m"></span>&deg;<br>
                     L<sub>s</sub> = <span class="l_s"></span>&deg;<br>
@@ -207,6 +212,32 @@
                     </p>
                     <p>
                         for Mars.
+                    </p>
+                </div>
+                <div class="explanation" id="alpha_fms-explanation">
+                    <div class="clock">
+                        <h3>Angle of Fictitious Mean Sun</h3>
+                        <span class="time"><span class="alpha_fms"></span>&deg;</span>
+                    </div>
+                    <p>
+                        Mars goes around the Sun, but viewed from Mars's point of view, the Sun goes around Mars.
+                        I'm not talking about the daily motion of the Sun caused by Mars's rotation, but the year-long
+                        motion of the Sun viewed from Mars.
+                    </p>
+                    <p>
+                        Because the orbit is an ellipse, the Sun will go faster some times than others. Imagine a
+                        fictitious Sun, though, that took the same Martian year to go around Mars but which orbited at a 
+                        constant angular velocity (the mean of the real Sun). This is the <i>fictitious mean Sun</i>
+                        and it's easier to calculate its angle first because, like the mean anomaly, it is proportional
+                        to time.
+                    </p>
+                    <p>
+                        Based on observations, Allison and McEwen give the angle at J2000 and the daily change (based on
+                        tropical orbit period) as 270.3863&deg; and 0.52403840&deg; / day respectively.
+                    </p>
+                    <p>This gives us:
+                    <p>
+                        &alpha;<sub>FMS</sub> = 270.3863&deg; + 0.52403840&deg;&Delta;t<sub>J2000</sub>
                     </p>
                 </div>
             </div>
