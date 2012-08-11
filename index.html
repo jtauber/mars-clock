@@ -140,6 +140,11 @@
                     <h3>Local True Solar Time</h3>
                     <div class="time ltst"></div>
                 </div>
+                
+                <div class="clock">
+                    <h3>Mission Sol</h3>
+                    <div class="time curiosity_sol"></div>
+                </div>
             </div>
             
             <div class="column">
@@ -382,6 +387,8 @@
                 
                 var lambda = 360 - 137.4;
                 
+                var curiosity_sol = Math.floor(msd - lambda / 360) - 49268;
+                
                 var lmst = (mtc - lambda * 24 / 360);
                 if (lmst < 0) {
                     lmst += 24;
@@ -412,6 +419,7 @@
                 $(".mtc").text(h_to_hms(mtc));
                 $(".lmst").text(h_to_hms(lmst));
                 $(".ltst").text(h_to_hms(ltst));
+                $(".curiosity_sol").text(curiosity_sol);
             }
             $(function() {
                 update();
