@@ -19,7 +19,7 @@
                 font-size: 70%;
             }
              .container {
-                width: 600px;
+                width: 960px;
                 margin: 50px auto;
                 text-align: center;
             }
@@ -38,6 +38,9 @@
                 font-size: 200%;
                 
             }
+            .clear {
+                clear: both;
+            }
             .credits {
                 font-weight: 400;
                 margin-top: 50px;
@@ -46,6 +49,13 @@
             }
             a {
                 color: #222;
+            }
+            .column {
+                float: left;
+                width: 480px;
+            }
+            .explanation-link {
+                cursor: pointer;
             }
         </style>
     </head>
@@ -56,57 +66,118 @@
             
             <p>This is a live calculation of the time on Mars, both Coordinated Time (think UTC but for Mars) and at the Curiosity site. I plan to further elaborate on these calculations but wanted to get something up quickly.</p>
             <div style="margin-bottom: 50px;">
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="jtauber" data-related="jtauber">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<a href="https://twitter.com/jtauber" class="twitter-follow-button" data-show-count="true">Follow @jtauber</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<iframe style="border: 0; margin: 0; padding: 0;"
-        src="https://www.gittip.com/jtauber/widget.html" 
-        width="48pt" height="20pt"></iframe>
-</div>
-            <h2>Earth</h2>
-            
-            <div>
-                <span class="utc-time"></span><br>
-                <i>millis</i> = <span class="millis"></span><br>
-                JD<sub>UT</sub> = <span class="jd_ut"></span><br>
-                JD<sub>TT</sub> = <span class="jd_tt"></span>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-via="jtauber" data-related="jtauber">Tweet</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                <a href="https://twitter.com/jtauber" class="twitter-follow-button" data-show-count="true">Follow @jtauber</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                <iframe style="border: 0; margin: 0; padding: 0;"
+                    src="https://www.gittip.com/jtauber/widget.html" 
+                    width="48pt" height="20pt"></iframe>
             </div>
             
-            <div class="clock">
-                <h3>&Delta;t<sub>J2000</sub></h3>
-                <span class="time j2000"></span>
+            <div class="column">
+                <h2>Earth</h2>
+                
+                <div>
+                    <span class="utc-time"></span>
+                    <div class="explanation-link" data-explanation="#millis-explanation">
+                        <i>millis</i> = <span class="millis"></span>
+                    </div>
+                    <div class="explanation-link" data-explanation="#jd_ut-explanation">
+                        JD<sub>UT</sub> = <span class="jd_ut"></span>
+                    </div>
+                    <div class="explanation-link" data-explanation="#jd_tt-explanation">
+                        JD<sub>TT</sub> = <span class="jd_tt"></span>
+                    </div>
+                </div>
+                
+                <div class="clock explanation-link" data-explanation="#j2000-explanation">
+                    <h3>Days Since J2000 Epoch</h3>
+                    <span class="time j2000"></span>
+                </div>
+                
+                <h2>Mars</h2>
+                
+                <div>
+                    M = <span class="m"></span>&deg;<br>
+                    &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;<br>
+                    PBS = <span class="pbs"></span>&deg;<br>
+                    v - M = <span class="v_m"></span>&deg;<br>
+                    L<sub>s</sub> = <span class="l_s"></span>&deg;<br>
+                    EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span>h
+                </div>
+                
+                <div class="clock">
+                    <h3>Coordinated Mars Time</h3>
+                    <div class="time mtc"></div>
+                </div>
+                
+                <h2>Curiosity<br><span>137.4&deg;E longitude</span></h2>
+                
+                <div class="clock">
+                    <h3>Local Mean Solar Time</h3>
+                    <div class="time lmst"></div>
+                </div>
+                
+                <div class="clock">
+                    <h3>Local True Solar Time</h3>
+                    <div class="time ltst"></div>
+                </div>
             </div>
             
-            <h2>Mars</h2>
-            
-            <div>
-                M = <span class="m"></span>&deg;<br>
-                &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;<br>
-                PBS = <span class="pbs"></span>&deg;<br>
-                v - M = <span class="v_m"></span>&deg;<br>
-                L<sub>s</sub> = <span class="l_s"></span>&deg;<br>
-                EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span>h
+            <div class="column">
+                <p class="help">Mouse over a number on the left to get an explanation below<br>(in progress)</p>
+                <div class="explanation" id="millis-explanation">
+                    <div class="clock">
+                        <h3>Milliseconds since<br>Unix Epoch</h3>
+                        <span class="time millis"></span>
+                    </div>
+                    <p>This is the number of milliseconds since<br>1 January 1970 00:00:00 UTC.</p>
+                    <p>We get this straight from your browser.</p>
+                </div>
+                <div class="explanation" id="jd_ut-explanation">
+                    <div class="clock">
+                        <h3>Julian Date (UT)</h3>
+                        <span class="time jd_ut"></span>
+                    </div>
+                    <p>This is the number of days (rather than milliseconds) since a much older epoch than Unix time.</p>
+                    <p>
+                        Rather than an elaborate conversion from the Gregorian date to the Julian date, we just divide
+                        <i>millis</i> by 86,400,000 to get the number of days since the Unix epoch and add that number
+                        to 2440587.5, the Julian Date at the Unix epoch.
+                    </p>
+                    <p>JD<sub>UT</sub> = 2440587.5 + (<i>millis</i> / 8.64 &times; 10<sup>7</sup> ms/day)</p>
+                </div>
+                <div class="explanation" id="jd_tt-explanation">
+                    <div class="clock">
+                        <h3>Julian Date (TT)</h3>
+                        <span class="time jd_ut"></span>
+                    </div>
+                    <p>
+                        We actually need the Terrestrial Time (TT) Julian Date rather than the UTC-based one.
+                        This means we basically just add the leap seconds which, since 1 July 2012 are 35 + 32.184.
+                    </p>
+                    <p>JD<sub>TT</sub> = JD<sub>UT</sub> + (35 + 32.184) / 86400</p>
+                </div>
+                <div class="explanation" id="j2000-explanation">
+                    <div class="clock">
+                        <h3>Days Since J2000 Epoch</h3>
+                        <span class="time j2000"></span>
+                    </div>
+                    <p>
+                        This is the number we're going to use as the input to our Mars calculations.
+                        It's the number of (fractional) days since<br>12:00 on 1 January 2000<br>in Terrestrial Time.
+                    </p>
+                    <p>
+                        We know what JD<sub>TT</sub> was at the J2000 epoch (2451545.0) so it's trivial to convert.
+                    </p>
+                    <p>
+                        &Delta;t<sub>J2000</sub> = JD<sub>TT</sub> - 2451545.0
+                    </p>
+                </div>
             </div>
             
-            <div class="clock">
-                <h3>Coordinated Mars Time</h3>
-                <div class="time mtc"></div>
-            </div>
-            
-            <h2>Curiosity<br><span>137.4&deg;E longitude</span></h2>
-            
-            <div class="clock">
-                <h3>Local Mean Solar Time</h3>
-                <div class="time lmst"></div>
-            </div>
-            
-            <div class="clock">
-                <h3>Local True Solar Time</h3>
-                <div class="time ltst"></div>
-            </div>
-            
-            
+            <div class="clear"></div>
             <div class="credits">
                 Formulae from
                 Allison, M., and M. McEwen 2000. <a href="http://pubs.giss.nasa.gov/abs/al05000n.html">A post-Pathfinder evaluation of aerocentric solar coordinates with improved timing recipes for Mars seasonal/diurnal climate studies.</a> <i>Planet. Space Sci.</i> <b>48</b>, 215-235.
@@ -183,7 +254,18 @@
             }
             $(function() {
                 update();
+                $(".explanation").hide();
                 setInterval("update()", 10);
+                $(".explanation-link").hover(function() {
+                    $(".explanation").hide();
+                    $(this).css("font-weight", "bold");
+                    $(".help").hide();
+                    $($(this).data("explanation")).show();
+                }, function() {
+                    $(this).css("font-weight", "300");
+                    $(".help").show();
+                    $($(this).data("explanation")).hide();
+                });
             });
         </script>
         <script type="text/javascript">
