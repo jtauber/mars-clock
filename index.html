@@ -202,7 +202,11 @@
                         it can be calculated directly from the Julian Date as follows:
                     </p>
                     <p>
-                        MTC = (24 h &times; ([(JD<sub>TT</sub> &minus; 2451549.5) / 1.027491252] &plus; 44796.0 &minus; 0.00096 )) mod 24
+                        MSD = ([(JD<sub>TT</sub> &minus; 2451549.5) / 1.027491252] &plus; 44796.0 &minus; 0.00096)
+                        <br>= <span class="msd"></span>
+                    </p>
+                    <p>
+                        MTC = (24 h &times; MSD) mod 24
                     </p>
                 </div>
                 <div class="explanation" id="m-explanation">
@@ -373,7 +377,8 @@
                 var l_s = (alpha_fms + nu_m) % 360;
                 var eot = 2.861 * sin(2 * l_s) - 0.071 * sin(4 * l_s) + 0.002 * sin(6 * l_s) - nu_m;
                 var eot_h = eot * 24 / 360;
-                var mtc = (24 * (((jd_tt - 2451549.5) / 1.027491252) + 44796.0 - 0.00096)) % 24;
+                var msd = (((jd_tt - 2451549.5) / 1.027491252) + 44796.0 - 0.00096);
+                var mtc = (24 * msd) % 24;
                 
                 var lambda = 360 - 137.4;
                 
@@ -403,6 +408,7 @@
                 $(".l_s").text(l_s.toFixed(5));
                 $(".eot").text(eot.toFixed(5));
                 $(".eot_h").text(eot_h.toFixed(5));
+                $(".msd").text(msd.toFixed(5));
                 $(".mtc").text(h_to_hms(mtc));
                 $(".lmst").text(h_to_hms(lmst));
                 $(".ltst").text(h_to_hms(ltst));
