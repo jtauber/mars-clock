@@ -1,135 +1,162 @@
-<h1>Mars Clock</h1>
+<html>
+    <head>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700,300' rel='stylesheet' type='text/css'>
 
-<p>
-    The current time is <span class="utc-time"></span>.
-</p>
+        <style>
+            body {
+                font-family: "Open Sans", sans-serif;
+                font-weight: 300;
+                color: #222;
+            }
+            h1, h2 {
+                margin-top: 2em;
+                font-weight: 700;
+            }
+            h2 span {
+                font-weight: 300;
+                color: #666;
+                font-size: 70%;
+            }
+             .container {
+                width: 960px;
+                margin: 50px auto;
+                text-align: center;
+            }
+            .clock {
+                background: #F7F7F7;
+                width: 240px;
+                margin: 10px auto;
+                padding: 5px 10px;
+            }
+            .clock h3 {
+                margin: 0;
+                font-weight: 300;
+                
+            }
+            .clock .time {
+                font-size: 200%;
+                
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="container">
+            <h1>Mars Clock</h1>
+            
+            <h2>Earth</h2>
+            
+            <p>
+                <span class="utc-time"></span><br>
+                <i>millis</i> = <span class="millis"></span><br>
+                JD<sub>UT</sub> = <span class="jd_ut"></span><br>
+                JD<sub>TT</sub> = <span class="jd_tt"></span>
+            </p>
+            
+            <div class="clock">
+                <h3>&Delta;t<sub>J2000</sub></h3>
+                <span class="time j2000"></span>
+            </div>
+            
+            <h2>Mars</h2>
+            
+            </p>
+                M = <span class="m"></span>&deg;<br>
+                &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;<br>
+                PBS = <span class="pbs"></span>&deg;<br>
+                v - M = <span class="v_m"></span>&deg;<br>
+                L<sub>s</sub> = <span class="l_s"></span>&deg;<br>
+                EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span> h<br>
+            </p>
 
-<p>
-    <i>millis</i> = <span class="millis"></span>.
-</p>
+            <p>
+                MTC = <b><span class="mtc"></span></b>
+            </p>
 
-<p>
-    JD<sub>UT</sub> = <span class="jd_ut"></span>.
-</p>
+            <h2>Curiosity<br><span>137.4&deg;E longitude</span></h2>
 
-<p>
-    JD<sub>TT</sub> = <span class="jd_tt"></span>.
-</p>
+            
+            <div class="clock">
+                <h3>Local Mean Solar Time</h3>
+                <div class="time lmst"></div>
+            </div>
 
-<p>
-    &Delta;t<sub>J2000</sub> = <span class="j2000"></span>.
-</p>
-
-<p>
-    M = <span class="m"></span>&deg;
-</p>
-
-<p>
-    &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;
-</p>
-
-<p>
-    PBS = <span class="pbs"></span>&deg;
-</p>
-
-<p>
-    v - M = <span class="v_m"></span>&deg;
-</p>
-
-<p>
-    L<sub>s</sub> = <span class="l_s"></span>&deg;
-</p>
-
-<p>
-    EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span> h
-</p>
-
-<p>
-    MTC = <span class="mtc"></span>
-</p>
-
-<h2>Curiosity</h2>
-
-<p>137.4&deg;E longitude</p>
-
-<p>
-    LMST = <span class="lmst"></span>
-</p>
-
-<p>
-    LTST = <span class="ltst"></span>
-</p>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-<script>
-    function cos(deg) {
-        return Math.cos(deg * Math.PI / 180);
-    }
-    function sin(deg) {
-        return Math.sin(deg * Math.PI / 180);
-    }
-    function h_to_hms(h) {
-        var x = h * 3600;
-        var hh = Math.floor(x / 3600);
-        if (hh < 10) hh = "0" + hh;
-        var y = x % 3600;
-        var mm = Math.floor(y / 60);
-        if (mm < 10) mm = "0" + mm;
-        var ss = Math.round(y % 60);
-        if (ss < 10) ss = "0" + ss;
-        return hh + ":" + mm + ":" + ss;
-    }
-    function update() {
-        var d = new Date();
-        $(".utc-time").text(d.toUTCString());
-        var millis = d.getTime();
-        var jd_ut = 2440587.5 + (millis / 8.64E7);
-        var jd_tt = jd_ut + (35 + 32.184) / 86400;
-        var j2000 = jd_tt - 2451545.0;
-        var m = (19.3870 + 0.52402075 * j2000) % 360;
-        var alpha_fms = (270.3863 + 0.52403840 * j2000) % 360;
-        var pbs =
-            0.0071 * cos((0.985626 * j2000 /  2.2353) +  49.409) +
-            0.0057 * cos((0.985626 * j2000 /  2.7543) + 168.173) +
-            0.0039 * cos((0.985626 * j2000 /  1.1177) + 191.837) +
-            0.0037 * cos((0.985626 * j2000 / 15.7866) +  21.736) +
-            0.0021 * cos((0.985626 * j2000 /  2.1354) +  15.704) +
-            0.0020 * cos((0.985626 * j2000 /  2.4694) +  95.528) +
-            0.0018 * cos((0.985626 * j2000 / 32.8493) +  49.095);
-        var v_m = (10.691 + 3.0E-7 * j2000) * sin(m) +
-            0.623 * sin(2 * m) +
-            0.050 * sin(3 * m) +
-            0.005 * sin(4 * m) +
-            0.0005 * sin(5 * m) +
-            pbs;
-        var l_s = (alpha_fms + v_m) % 360;
-        var eot = 2.861 * sin(2 * l_s) - 0.071 * sin(4 * l_s) + 0.002 * sin(6 * l_s) - v_m;
-        var eot_h = eot * 24 / 360;
-        var mtc = (24 * (((jd_tt - 2451549.5) / 1.027491252) + 44796.0 - 0.00096)) % 24;
-        
-        var lambda = 360 - 137.4;
-        
-        var lmst = mtc - lambda * 24 / 360;
-        var ltst = lmst + eot * 24 / 360;
-        
-        $(".millis").text(millis);
-        $(".jd_ut").text(jd_ut.toFixed(5));
-        $(".jd_tt").text(jd_tt.toFixed(5));
-        $(".j2000").text(j2000.toFixed(5));
-        $(".m").text(m.toFixed(5));
-        $(".alpha_fms").text(alpha_fms.toFixed(5));
-        $(".pbs").text(pbs.toFixed(5));
-        $(".v_m").text(v_m.toFixed(5));
-        $(".l_s").text(l_s.toFixed(5));
-        $(".eot").text(eot.toFixed(5));
-        $(".eot_h").text(eot_h.toFixed(5));
-        $(".mtc").text(h_to_hms(mtc));
-        $(".lmst").text(h_to_hms(lmst));
-        $(".ltst").text(h_to_hms(ltst));
-    }
-    $(function() {
-        update();
-        setInterval("update()", 10);
-    });
-</script>
-
+            <div class="clock">
+                <h3>Local True Solar Time</h3>
+                <div class="time ltst"></div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script>
+            function cos(deg) {
+                return Math.cos(deg * Math.PI / 180);
+            }
+            function sin(deg) {
+                return Math.sin(deg * Math.PI / 180);
+            }
+            function h_to_hms(h) {
+                var x = h * 3600;
+                var hh = Math.floor(x / 3600);
+                if (hh < 10) hh = "0" + hh;
+                var y = x % 3600;
+                var mm = Math.floor(y / 60);
+                if (mm < 10) mm = "0" + mm;
+                var ss = Math.round(y % 60);
+                if (ss < 10) ss = "0" + ss;
+                return hh + ":" + mm + ":" + ss;
+            }
+            function update() {
+                var d = new Date();
+                $(".utc-time").text(d.toUTCString());
+                var millis = d.getTime();
+                var jd_ut = 2440587.5 + (millis / 8.64E7);
+                var jd_tt = jd_ut + (35 + 32.184) / 86400;
+                var j2000 = jd_tt - 2451545.0;
+                var m = (19.3870 + 0.52402075 * j2000) % 360;
+                var alpha_fms = (270.3863 + 0.52403840 * j2000) % 360;
+                var pbs =
+                    0.0071 * cos((0.985626 * j2000 /  2.2353) +  49.409) +
+                    0.0057 * cos((0.985626 * j2000 /  2.7543) + 168.173) +
+                    0.0039 * cos((0.985626 * j2000 /  1.1177) + 191.837) +
+                    0.0037 * cos((0.985626 * j2000 / 15.7866) +  21.736) +
+                    0.0021 * cos((0.985626 * j2000 /  2.1354) +  15.704) +
+                    0.0020 * cos((0.985626 * j2000 /  2.4694) +  95.528) +
+                    0.0018 * cos((0.985626 * j2000 / 32.8493) +  49.095);
+                var v_m = (10.691 + 3.0E-7 * j2000) * sin(m) +
+                    0.623 * sin(2 * m) +
+                    0.050 * sin(3 * m) +
+                    0.005 * sin(4 * m) +
+                    0.0005 * sin(5 * m) +
+                    pbs;
+                var l_s = (alpha_fms + v_m) % 360;
+                var eot = 2.861 * sin(2 * l_s) - 0.071 * sin(4 * l_s) + 0.002 * sin(6 * l_s) - v_m;
+                var eot_h = eot * 24 / 360;
+                var mtc = (24 * (((jd_tt - 2451549.5) / 1.027491252) + 44796.0 - 0.00096)) % 24;
+                
+                var lambda = 360 - 137.4;
+                
+                var lmst = mtc - lambda * 24 / 360;
+                var ltst = lmst + eot * 24 / 360;
+                
+                $(".millis").text(millis);
+                $(".jd_ut").text(jd_ut.toFixed(5));
+                $(".jd_tt").text(jd_tt.toFixed(5));
+                $(".j2000").text(j2000.toFixed(5));
+                $(".m").text(m.toFixed(5));
+                $(".alpha_fms").text(alpha_fms.toFixed(5));
+                $(".pbs").text(pbs.toFixed(5));
+                $(".v_m").text(v_m.toFixed(5));
+                $(".l_s").text(l_s.toFixed(5));
+                $(".eot").text(eot.toFixed(5));
+                $(".eot_h").text(eot_h.toFixed(5));
+                $(".mtc").text(h_to_hms(mtc));
+                $(".lmst").text(h_to_hms(lmst));
+                $(".ltst").text(h_to_hms(ltst));
+            }
+            $(function() {
+                update();
+                setInterval("update()", 10);
+            });
+        </script>
+    </body>
+</html>
