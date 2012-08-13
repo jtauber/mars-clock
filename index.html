@@ -100,12 +100,16 @@
                 
                 <h2>Mars</h2>
                 
+                <div class="clock explanation-link" data-explanation="#msd-explanation">
+                    <h3>Mars Sol Date</h3>
+                    <div class="time msd"></div>
+                </div>
+                
                 <div class="clock explanation-link" data-explanation="#mtc-explanation">
                     <h3>Coordinated Mars Time</h3>
                     <div class="time mtc"></div>
                 </div>
                 
-
                 <div class="explanation-link" data-explanation="#m-explanation">
                     M = <span class="m"></span>&deg;
                 </div>
@@ -198,6 +202,32 @@
                         &Delta;t<sub>J2000</sub> = JD<sub>TT</sub> - 2451545.0
                     </p>
                 </div>
+                <div class="explanation" id="msd-explanation">
+                    <div class="clock">
+                        <h3>Mars Sol Date</h3>
+                        <div class="time msd"></div>
+                    </div>
+                    <p>
+                        The equivalent of the Julian Date for Mars is the Mars Sol Date.
+                    </p>
+                    <p>
+                        At midnight on the 6th January 2000 (&Delta;t<sub>J2000</sub> = 4.5) it was midnight at the Martian
+                        prime meridian, so our starting point for Mars Sol Date is &Delta;t<sub>J2000</sub> &minus; 4.5.
+                    </p>
+                    <p>
+                        The length of a Martian day and Earth (Julian) day differ by a ratio of 1.027491252 so we divide by that.
+                    </p>
+                    <p>
+                        By convention, to keep the MSD positive going back to midday December 29th 1873, we add 44796.
+                    </p>
+                    <p>
+                        There is a slight adjustment as the midnights weren't perfectly aligned. Allison, M., and M. McEwen 2000 has &minus;0.00072 but
+                        the Mars24 site gives a more up-to-date &minus;0.00096.
+                    </p>
+                    <p>
+                        MSD = ([(&Delta;t<sub>J2000</sub> &minus; 4.5) / 1.027491252] &plus; 44796.0 &minus; 0.00096)
+                    </p>
+                </div>
                 <div class="explanation" id="mtc-explanation">
                     <div class="clock">
                         <h3>Coordinated Mars Time</h3>
@@ -205,11 +235,7 @@
                     </div>
                     <p>
                         <i>Coordinated Mars Time</i> (or MTC) is like UTC but for Mars. Because it is just a mean time,
-                        it can be calculated directly from the Julian Date as follows:
-                    </p>
-                    <p>
-                        MSD = ([(JD<sub>TT</sub> &minus; 2451549.5) / 1.027491252] &plus; 44796.0 &minus; 0.00096)
-                        <br>= <span class="msd"></span>
+                        it can be calculated directly from the Mars Sol Date as follows:
                     </p>
                     <p>
                         MTC = (24 h &times; MSD) mod 24
@@ -383,7 +409,7 @@
                 var l_s = (alpha_fms + nu_m) % 360;
                 var eot = 2.861 * sin(2 * l_s) - 0.071 * sin(4 * l_s) + 0.002 * sin(6 * l_s) - nu_m;
                 var eot_h = eot * 24 / 360;
-                var msd = (((jd_tt - 2451549.5) / 1.027491252) + 44796.0 - 0.00096);
+                var msd = (((j2000 - 4.5) / 1.027491252) + 44796.0 - 0.00096);
                 var mtc = (24 * msd) % 24;
                 
                 var lambda = 360 - 137.4;
