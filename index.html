@@ -142,12 +142,12 @@
                 
                 <div class="clock">
                     <h3>Local Mean Solar Time</h3>
-                    <div class="time lmst"></div>
+                    <div class="time curiosity_lmst"></div>
                 </div>
                 
                 <div class="clock">
                     <h3>Local True Solar Time</h3>
-                    <div class="time ltst"></div>
+                    <div class="time curiosity_ltst"></div>
                 </div>
                 
             </div>
@@ -392,6 +392,14 @@
                 }
                 return x1 + x2;
             }
+            function within_24(n) {
+                if (n < 0) {
+                    n += 24;
+                } else if (n >= 24) {
+                    n -= 24;
+                }
+                return n;
+            }
             function update() {
                 var d = new Date();
                 $(".utc-time").text(d.toUTCString());
@@ -423,22 +431,10 @@
                 var msd = (((j2000 - 4.5) / 1.027491252) + 44796.0 - 0.00096);
                 var mtc = (24 * msd) % 24;
                 
-                var lambda = 360 - 137.4;
-                
-                var curiosity_sol = Math.floor(msd - lambda / 360) - 49268;
-                
-                var lmst = (mtc - lambda * 24 / 360);
-                if (lmst < 0) {
-                    lmst += 24;
-                } else if (lmst >= 24) {
-                    lmst -= 24;
-                }
-                var ltst = (lmst + eot * 24 / 360);
-                if (ltst < 0) {
-                    ltst += 24;
-                } else if (ltst >= 24) {
-                    ltst -= 24;
-                }
+                var curiosity_lambda = 360 - 137.4;
+                var curiosity_sol = Math.floor(msd - curiosity_lambda / 360) - 49268;
+                var curiosity_lmst = within_24(mtc - curiosity_lambda * 24 / 360);
+                var curiosity_ltst = within_24(curiosity_lmst + eot * 24 / 360);
                 
                 $(".millis").text(add_commas(millis));
                 $(".jd_ut").text(add_commas(jd_ut.toFixed(5)));
@@ -455,8 +451,9 @@
                 $(".eot_h").text(eot_h.toFixed(5));
                 $(".msd").text(add_commas(msd.toFixed(5)));
                 $(".mtc").text(h_to_hms(mtc));
-                $(".lmst").text(h_to_hms(lmst));
-                $(".ltst").text(h_to_hms(ltst));
+                
+                $(".curiosity_lmst").text(h_to_hms(curiosity_lmst));
+                $(".curiosity_ltst").text(h_to_hms(curiosity_ltst));
                 $(".curiosity_sol").text(curiosity_sol);
             }
             $(function() {
