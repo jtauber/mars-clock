@@ -25,7 +25,7 @@
             }
             .clock {
                 background: #F7F7F7;
-                width: 240px;
+                width: 250px;
                 margin: 10px auto;
                 padding: 5px 10px;
             }
@@ -35,7 +35,7 @@
                 
             }
             .clock .time {
-                font-size: 200%;
+                font-size: 180%;
                 
             }
             .clear {
@@ -171,9 +171,9 @@
                     <p>
                         Rather than an elaborate conversion from the Gregorian date to the Julian date, we just divide
                         <i>millis</i> by 86,400,000 to get the number of days since the Unix epoch and add that number
-                        to 2440587.5, the Julian Date at the Unix epoch.
+                        to 2,440,587.5, the Julian Date at the Unix epoch.
                     </p>
-                    <p>JD<sub>UT</sub> = 2440587.5 + (<i>millis</i> / 8.64 &times; 10<sup>7</sup> ms/day)</p>
+                    <p>JD<sub>UT</sub> = 2,440,587.5 + (<i>millis</i> / 8.64 &times; 10<sup>7</sup> ms/day)</p>
                 </div>
                 <div class="explanation" id="jd_tt-explanation">
                     <div class="clock">
@@ -184,7 +184,7 @@
                         We actually need the Terrestrial Time (TT) Julian Date rather than the UTC-based one.
                         This means we basically just add the leap seconds which, since 1 July 2012 are 35 + 32.184.
                     </p>
-                    <p>JD<sub>TT</sub> = JD<sub>UT</sub> + (35 + 32.184) / 86400</p>
+                    <p>JD<sub>TT</sub> = JD<sub>UT</sub> + (35 + 32.184) / 86,400</p>
                 </div>
                 <div class="explanation" id="j2000-explanation">
                     <div class="clock">
@@ -196,10 +196,10 @@
                         It's the number of (fractional) days since<br>12:00 on 1 January 2000<br>in Terrestrial Time.
                     </p>
                     <p>
-                        We know what JD<sub>TT</sub> was at the J2000 epoch (2451545.0) so it's trivial to convert.
+                        We know what JD<sub>TT</sub> was at the J2000 epoch (2,451,545.0) so it's trivial to convert.
                     </p>
                     <p>
-                        &Delta;t<sub>J2000</sub> = JD<sub>TT</sub> - 2451545.0
+                        &Delta;t<sub>J2000</sub> = JD<sub>TT</sub> - 2,451,545.0
                     </p>
                 </div>
                 <div class="explanation" id="msd-explanation">
@@ -218,14 +218,14 @@
                         The length of a Martian day and Earth (Julian) day differ by a ratio of 1.027491252 so we divide by that.
                     </p>
                     <p>
-                        By convention, to keep the MSD positive going back to midday December 29th 1873, we add 44796.
+                        By convention, to keep the MSD positive going back to midday December 29th 1873, we add 44,796.
                     </p>
                     <p>
                         There is a slight adjustment as the midnights weren't perfectly aligned. Allison, M., and M. McEwen 2000 has &minus;0.00072 but
                         the Mars24 site gives a more up-to-date &minus;0.00096.
                     </p>
                     <p>
-                        MSD = ([(&Delta;t<sub>J2000</sub> &minus; 4.5) / 1.027491252] &plus; 44796.0 &minus; 0.00096)
+                        MSD = ([(&Delta;t<sub>J2000</sub> &minus; 4.5) / 1.027491252] &plus; 44,796.0 &minus; 0.00096)
                     </p>
                 </div>
                 <div class="explanation" id="mtc-explanation">
@@ -381,6 +381,17 @@
                 if (ss < 10) ss = "0" + ss;
                 return hh + ":" + mm + ":" + ss;
             }
+            function add_commas(n) {
+                n += "";
+                var x = n.split(".");
+                var x1 = x[0];
+                var x2 = x.length > 1 ? "." + x[1] : "";
+                var rgx = /(\d+)(\d{3})/;
+                while (rgx.test(x1)) {
+                    x1 = x1.replace(rgx, "$1" + "," + "$2");
+                }
+                return x1 + x2;
+            }
             function update() {
                 var d = new Date();
                 $(".utc-time").text(d.toUTCString());
@@ -429,10 +440,10 @@
                     ltst -= 24;
                 }
                 
-                $(".millis").text(millis);
-                $(".jd_ut").text(jd_ut.toFixed(5));
-                $(".jd_tt").text(jd_tt.toFixed(5));
-                $(".j2000").text(j2000.toFixed(5));
+                $(".millis").text(add_commas(millis));
+                $(".jd_ut").text(add_commas(jd_ut.toFixed(5)));
+                $(".jd_tt").text(add_commas(jd_tt.toFixed(5)));
+                $(".j2000").text(add_commas(j2000.toFixed(5)));
                 $(".m").text(m.toFixed(5));
                 $(".alpha_fms").text(alpha_fms.toFixed(5));
                 $(".pbs").text(pbs.toFixed(5));
@@ -442,7 +453,7 @@
                 $(".l_s").text(l_s.toFixed(5));
                 $(".eot").text(eot.toFixed(5));
                 $(".eot_h").text(eot_h.toFixed(5));
-                $(".msd").text(msd.toFixed(5));
+                $(".msd").text(add_commas(msd.toFixed(5)));
                 $(".mtc").text(h_to_hms(mtc));
                 $(".lmst").text(h_to_hms(lmst));
                 $(".ltst").text(h_to_hms(ltst));
