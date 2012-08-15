@@ -130,7 +130,7 @@
                     <i>L</i><sub>s</sub> = <span class="l_s"></span>&deg;<br>
                 </div>
                 <div>
-                    EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span>h
+                    EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span>
                 </div>
                 
                 <h2>Curiosity<br><span>137.4&deg;E longitude</span></h2>
@@ -463,7 +463,7 @@
                 $(".nu").text(nu.toFixed(5));
                 $(".l_s").text(l_s.toFixed(5));
                 $(".eot").text(eot.toFixed(5));
-                $(".eot_h").text(eot_h.toFixed(5));
+                $(".eot_h").text(h_to_hms(eot_h.toFixed(5)));
                 $(".msd").text(add_commas(msd.toFixed(5)));
                 $(".mtc").text(h_to_hms(mtc));
                 
