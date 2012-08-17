@@ -161,6 +161,11 @@
                     <h3>Mission Time (HLST)</h3>
                     <div class="time opportunity_mission"></div>
                 </div>
+                
+                <div class="clock">
+                    <h3>Local True Solar Time</h3>
+                    <div class="time opportunity_ltst"></div>
+                </div>
             </div>
             
             <div class="column">
@@ -450,6 +455,7 @@
                 var opportunity_sol_date = msd - 46235 - 0.042431;
                 var opportunity_sol = Math.floor(opportunity_sol_date);
                 var opportunity_mission = (24 * opportunity_sol_date) % 24;
+                var opportunity_ltst = within_24(opportunity_mission + eot * 24 / 360);
                 
                 $(".millis").text(add_commas(millis));
                 $(".jd_ut").text(add_commas(jd_ut.toFixed(5)));
@@ -472,6 +478,7 @@
                 $(".curiosity_sol").text(curiosity_sol);
                 
                 $(".opportunity_mission").text(h_to_hms(opportunity_mission));
+                $(".opportunity_ltst").text(h_to_hms(opportunity_ltst));
                 $(".opportunity_sol").text(opportunity_sol);
             }
             $(function() {
