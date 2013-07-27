@@ -57,6 +57,44 @@
             .explanation-link {
                 cursor: pointer;
             }
+
+            .earth-date-input .utc-time {
+                display: block;
+                position: relative;
+                cursor: pointer;
+                padding: 1px 2px 1px 2px;
+                margin: 2px;
+            }
+            .earth-date-input .utc-time:hover,
+            .earth-date-input .utc-time:focus {
+                text-decoration: underline;
+            }
+            .earth-date-input .manual-input {
+                position: relative;
+                margin: 0 auto;
+            }
+            .earth-date-input .custom-datetime {
+                font: inherit;
+                padding: 1px 22px 0 2px;
+                border: none;
+                border-bottom: dotted 1px #999;
+                margin: 2px;
+            }
+            .earth-date-input .clear-button {
+                position: absolute;
+                font-size: 12px;
+                line-height: 1em;
+                padding: 7px 2px;
+                color: #999;
+                cursor: pointer;
+                margin-left: -28px;
+                width: 24px;
+                overflow: hidden;
+            }
+            .earth-date-input .clear-button:hover,
+            .earth-date-input .clear-button:focus {
+                color: #333;
+            }
         </style>
     </head>
     
@@ -80,91 +118,106 @@
             <div class="column">
                 <h2>Earth</h2>
                 
-                <div>
-                    <span class="utc-time"></span>
-                    <div class="explanation-link" data-explanation="#millis-explanation">
-                        <i>millis</i> = <span class="millis"></span>
+                <div class="earth-date-input">
+                    <span class="automatic-input">
+                        <a class="utc-time" title="Click here to enter a date"></a>
+                    </span>
+                    <span class="manual-input" style="display:none;">
+                        <input type="datetime" name="custom-datetime" class="custom-datetime" />
+                        <a class="clear-button">&#x232b;</a>
+                    </span>
+                </div>
+
+                <div class="manual-input-invalid" style="display:none;">
+                    <p>Please enter a valid date in a well-known format such as &ldquo;August 6, 2012&rdquo;.</p>
+                </div>
+                
+                <div class="date-conversion-results">
+                    <div>
+                        <div class="explanation-link" data-explanation="#millis-explanation">
+                            <i>millis</i> = <span class="millis"></span>
+                        </div>
+                        <div class="explanation-link" data-explanation="#jd_ut-explanation">
+                            JD<sub>UT</sub> = <span class="jd_ut"></span>
+                        </div>
+                        <div class="explanation-link" data-explanation="#jd_tt-explanation">
+                            JD<sub>TT</sub> = <span class="jd_tt"></span>
+                        </div>
                     </div>
-                    <div class="explanation-link" data-explanation="#jd_ut-explanation">
-                        JD<sub>UT</sub> = <span class="jd_ut"></span>
+                    
+                    <div class="clock explanation-link" data-explanation="#j2000-explanation">
+                        <h3>Days Since J2000 Epoch</h3>
+                        <span class="time j2000"></span>
                     </div>
-                    <div class="explanation-link" data-explanation="#jd_tt-explanation">
-                        JD<sub>TT</sub> = <span class="jd_tt"></span>
+                    
+                    <h2>Mars</h2>
+                    
+                    <div class="clock explanation-link" data-explanation="#msd-explanation">
+                        <h3>Mars Sol Date</h3>
+                        <div class="time msd"></div>
                     </div>
-                </div>
-                
-                <div class="clock explanation-link" data-explanation="#j2000-explanation">
-                    <h3>Days Since J2000 Epoch</h3>
-                    <span class="time j2000"></span>
-                </div>
-                
-                <h2>Mars</h2>
-                
-                <div class="clock explanation-link" data-explanation="#msd-explanation">
-                    <h3>Mars Sol Date</h3>
-                    <div class="time msd"></div>
-                </div>
-                
-                <div class="clock explanation-link" data-explanation="#mtc-explanation">
-                    <h3>Coordinated Mars Time</h3>
-                    <div class="time mtc"></div>
-                </div>
-                
-                <div class="explanation-link" data-explanation="#m-explanation">
-                    M = <span class="m"></span>&deg;
-                </div>
-                <div class="explanation-link" data-explanation="#alpha_fms-explanation">
-                    &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;
-                </div>
-                <div class="explanation-link" data-explanation="#e-explanation">
-                    <i>e</i> = <span class="e"></span>
-                </div>
-                <div>
-                    PBS = <span class="pbs"></span>&deg;
-                </div>
-                <div class="explanation-link" data-explanation="#nu_m-explanation">
-                    &nu; - M = <span class="nu_m"></span>&deg;
-                </div>
-                &nu; = <span class="nu"></span>&deg;
-                <div class="explanation-link" data-explanation="#l_s-explanation">
-                    <i>L</i><sub>s</sub> = <span class="l_s"></span>&deg;<br>
-                </div>
-                <div>
-                    EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span>
-                </div>
-                
-                <h2>Curiosity<br><span>137.4&deg;E longitude</span></h2>
-                
-                <div class="clock">
-                    <h3>Mission Sol</h3>
-                    <div class="time curiosity_sol"></div>
-                </div>
-                
-                <div class="clock">
-                    <h3>Mission Time (Landing LMST)</h3>
-                    <div class="time curiosity_lmst"></div>
-                </div>
-                
-                <div class="clock">
-                    <h3>Local True Solar Time</h3>
-                    <div class="time curiosity_ltst"></div>
-                </div>
-                
-                <h2>Opportunity</h2>
-                
-                <div class="clock">
-                    <h3>Mission Sol</h3>
-                    <div class="time opportunity_sol"></div>
-                </div>
-                
-                <div class="clock">
-                    <h3>Mission Time (HLST)</h3>
-                    <div class="time opportunity_mission"></div>
-                </div>
-                
-                <div class="clock">
-                    <h3>Local True Solar Time</h3>
-                    <div class="time opportunity_ltst"></div>
+                    
+                    <div class="clock explanation-link" data-explanation="#mtc-explanation">
+                        <h3>Coordinated Mars Time</h3>
+                        <div class="time mtc"></div>
+                    </div>
+                    
+                    <div class="explanation-link" data-explanation="#m-explanation">
+                        M = <span class="m"></span>&deg;
+                    </div>
+                    <div class="explanation-link" data-explanation="#alpha_fms-explanation">
+                        &alpha;<sub>FMS</sub> = <span class="alpha_fms"></span>&deg;
+                    </div>
+                    <div class="explanation-link" data-explanation="#e-explanation">
+                        <i>e</i> = <span class="e"></span>
+                    </div>
+                    <div>
+                        PBS = <span class="pbs"></span>&deg;
+                    </div>
+                    <div class="explanation-link" data-explanation="#nu_m-explanation">
+                        &nu; - M = <span class="nu_m"></span>&deg;
+                    </div>
+                    &nu; = <span class="nu"></span>&deg;
+                    <div class="explanation-link" data-explanation="#l_s-explanation">
+                        <i>L</i><sub>s</sub> = <span class="l_s"></span>&deg;<br>
+                    </div>
+                    <div>
+                        EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span>
+                    </div>
+                    
+                    <h2>Curiosity<br><span>137.4&deg;E longitude</span></h2>
+                    
+                    <div class="clock">
+                        <h3>Mission Sol</h3>
+                        <div class="time curiosity_sol"></div>
+                    </div>
+                    
+                    <div class="clock">
+                        <h3>Mission Time (Landing LMST)</h3>
+                        <div class="time curiosity_lmst"></div>
+                    </div>
+                    
+                    <div class="clock">
+                        <h3>Local True Solar Time</h3>
+                        <div class="time curiosity_ltst"></div>
+                    </div>
+                    
+                    <h2>Opportunity</h2>
+                    
+                    <div class="clock">
+                        <h3>Mission Sol</h3>
+                        <div class="time opportunity_sol"></div>
+                    </div>
+                    
+                    <div class="clock">
+                        <h3>Mission Time (HLST)</h3>
+                        <div class="time opportunity_mission"></div>
+                    </div>
+                    
+                    <div class="clock">
+                        <h3>Local True Solar Time</h3>
+                        <div class="time opportunity_ltst"></div>
+                    </div>
                 </div>
             </div>
             
@@ -417,7 +470,23 @@
                 return n;
             }
             function update() {
-                var d = new Date();
+                var input_date = $(".custom-datetime").val();
+                if (input_date) {
+                    // Slightly evil but mostly functional date parsing from human input.
+                    // Works reasonably well in most browsers :)
+                    var d = new Date(input_date);
+                } else {
+                    var d = new Date();
+                }
+
+                if (d.getTime()) {
+                    $(".manual-input-invalid").hide();
+                    $(".date-conversion-results").show();
+                } else {
+                    $(".manual-input-invalid").show();
+                    $(".date-conversion-results").hide();
+                }
+                
                 $(".utc-time").text(d.toUTCString());
                 var millis = d.getTime();
                 var jd_ut = 2440587.5 + (millis / 8.64E7);
@@ -484,7 +553,7 @@
             $(function() {
                 update();
                 $(".explanation").hide();
-                setInterval("update()", 10);
+                setInterval(update, 10);
                 $(".explanation-link").hover(function() {
                     $(".explanation").hide();
                     $(this).css("font-weight", "bold");
@@ -494,6 +563,25 @@
                     $(this).css("font-weight", "300");
                     $(".help").show();
                     $($(this).data("explanation")).hide();
+                });
+                $('.automatic-input').mouseup(function() {
+                    // Changing the contents of this element so frequently
+                    // stops the click handler from firing, so we need to
+                    // watch for mouseup instead
+                    $('.automatic-input').hide();
+                    $('.manual-input').show();
+                    $('.custom-datetime').select();
+                });
+                $('.custom-datetime').blur(function() {
+                    if (! $('.custom-datetime').val()) {
+                        $('.manual-input').hide();
+                        $('.automatic-input').show();
+                    }
+                });
+                $('.earth-date-input .clear-button').click(function() {
+                    $('.custom-datetime').val('');
+                    $('.manual-input').hide();
+                    $('.automatic-input').show();
                 });
             });
         </script>
