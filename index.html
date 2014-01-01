@@ -32,11 +32,11 @@
             .clock h3 {
                 margin: 0;
                 font-weight: 300;
-                
+
             }
             .clock .time {
                 font-size: 180%;
-                
+
             }
             .clear {
                 clear: both;
@@ -45,7 +45,7 @@
                 font-weight: 400;
                 margin-top: 50px;
                 font-size: 8pt;
-                
+
             }
             a {
                 color: #222;
@@ -97,11 +97,11 @@
             }
         </style>
     </head>
-    
+
     <body>
         <div class="container">
             <h1>Mars Clock <span>by James Tauber</span></h1>
-            
+
             <p>
                 This is a live calculation of the time on Mars including mission times for MSL Curiosity and MER-B Opportunity.
             </p>
@@ -111,13 +111,13 @@
                 <a href="https://twitter.com/jtauber" class="twitter-follow-button" data-show-count="true">Follow @jtauber</a>
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                 <iframe style="border: 0; margin: 0; padding: 0;"
-                    src="https://www.gittip.com/jtauber/widget.html" 
+                    src="https://www.gittip.com/jtauber/widget.html"
                     width="48pt" height="20pt"></iframe>
             </div>
-            
+
             <div class="column">
                 <h2>Earth</h2>
-                
+
                 <div class="earth-date-input">
                     <span class="automatic-input">
                         <a class="utc-time" title="Click here to enter a date"></a>
@@ -131,7 +131,7 @@
                 <div class="manual-input-invalid" style="display:none;">
                     <p>Please enter a valid date in a well-known format such as &ldquo;August 6, 2012&rdquo;.</p>
                 </div>
-                
+
                 <div class="date-conversion-results">
                     <div>
                         <div class="explanation-link" data-explanation="#millis-explanation">
@@ -144,24 +144,24 @@
                             JD<sub>TT</sub> = <span class="jd_tt"></span>
                         </div>
                     </div>
-                    
+
                     <div class="clock explanation-link" data-explanation="#j2000-explanation">
                         <h3>Days Since J2000 Epoch</h3>
                         <span class="time j2000"></span>
                     </div>
-                    
+
                     <h2>Mars</h2>
-                    
+
                     <div class="clock explanation-link" data-explanation="#msd-explanation">
                         <h3>Mars Sol Date</h3>
                         <div class="time msd"></div>
                     </div>
-                    
+
                     <div class="clock explanation-link" data-explanation="#mtc-explanation">
                         <h3>Coordinated Mars Time</h3>
                         <div class="time mtc"></div>
                     </div>
-                    
+
                     <div class="explanation-link" data-explanation="#m-explanation">
                         M = <span class="m"></span>&deg;
                     </div>
@@ -184,43 +184,43 @@
                     <div>
                         EOT = <span class="eot"></span>&deg; = <span class="eot_h"></span>
                     </div>
-                    
+
                     <h2>Curiosity<br><span>137.4&deg;E longitude</span></h2>
-                    
+
                     <div class="clock">
                         <h3>Mission Sol</h3>
                         <div class="time curiosity_sol"></div>
                     </div>
-                    
+
                     <div class="clock">
                         <h3>Mission Time (Landing LMST)</h3>
                         <div class="time curiosity_lmst"></div>
                     </div>
-                    
+
                     <div class="clock">
                         <h3>Local True Solar Time</h3>
                         <div class="time curiosity_ltst"></div>
                     </div>
-                    
+
                     <h2>Opportunity</h2>
-                    
+
                     <div class="clock">
                         <h3>Mission Sol</h3>
                         <div class="time opportunity_sol"></div>
                     </div>
-                    
+
                     <div class="clock">
                         <h3>Mission Time (HLST)</h3>
                         <div class="time opportunity_mission"></div>
                     </div>
-                    
+
                     <div class="clock">
                         <h3>Local True Solar Time</h3>
                         <div class="time opportunity_ltst"></div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="column">
                 <p class="help">Mouse over a number on the left to get an explanation below<br>(in progress)</p>
                 <div class="explanation" id="millis-explanation">
@@ -351,7 +351,7 @@
                     </p>
                     <p>
                         Because the orbit is an ellipse, the Sun will go faster some times than others. Imagine a
-                        fictitious Sun, though, that took the same Martian year to go around Mars but which orbited at a 
+                        fictitious Sun, though, that took the same Martian year to go around Mars but which orbited at a
                         constant angular velocity (the mean of the real Sun). This is the <i>fictitious mean Sun</i>
                         and it's easier to calculate its angle first because, like the mean anomaly, it is proportional
                         to time.
@@ -385,7 +385,7 @@
                         the difference between the true anomaly and mean anomaly. This is called the <i>Equation of Center</i>.
                     </p>
                     <p>
-                        For a two-body Kepler orbit, this difference can be approximated using a Fourier-Bessel series given 
+                        For a two-body Kepler orbit, this difference can be approximated using a Fourier-Bessel series given
                         the mean anomaly M and eccentricity <i>e</i>. This results in:
                     </p>
                     <p>
@@ -396,7 +396,7 @@
                         <br>&plus; 0.0005&deg; sin 5<i>M</i>
                     </p>
                     <p>
-                        We're not quite done yet as the above assumes a two-body Kepler motion and we need to include the 
+                        We're not quite done yet as the above assumes a two-body Kepler motion and we need to include the
                         perturbations caused by other planets previously calculated.
                     </p>
                     <p>Once they have been added, we have our equation of center.</p>
@@ -422,14 +422,14 @@
                     </p>
                 </div>
             </div>
-            
+
             <div class="clear"></div>
             <div class="credits">
                 Formulae from
                 Allison, M., and M. McEwen 2000. <a href="http://pubs.giss.nasa.gov/abs/al05000n.html">A post-Pathfinder evaluation of aerocentric solar coordinates with improved timing recipes for Mars seasonal/diurnal climate studies.</a> <i>Planet. Space Sci.</i> <b>48</b>, 215-235.
                 and <a href="http://www.giss.nasa.gov/tools/mars24/help/algorithm.html">Mars24 Algorithm and Worked Examples</a>
             </div>
-            
+
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script>
@@ -486,7 +486,7 @@
                     $(".manual-input-invalid").show();
                     $(".date-conversion-results").hide();
                 }
-                
+
                 $(".utc-time").text(d.toUTCString());
                 var millis = d.getTime();
                 var jd_ut = 2440587.5 + (millis / 8.64E7);
@@ -515,17 +515,17 @@
                 var eot_h = eot * 24 / 360;
                 var msd = (((j2000 - 4.5) / 1.027491252) + 44796.0 - 0.00096);
                 var mtc = (24 * msd) % 24;
-                
+
                 var curiosity_lambda = 360 - 137.4;
                 var curiosity_sol = Math.floor(msd - curiosity_lambda / 360) - 49268;
                 var curiosity_lmst = within_24(mtc - curiosity_lambda * 24 / 360);
                 var curiosity_ltst = within_24(curiosity_lmst + eot * 24 / 360);
-                
+
                 var opportunity_sol_date = msd - 46235 - 0.042431;
                 var opportunity_sol = Math.floor(opportunity_sol_date);
                 var opportunity_mission = (24 * opportunity_sol_date) % 24;
                 var opportunity_ltst = within_24(opportunity_mission + eot * 24 / 360);
-                
+
                 $(".millis").text(add_commas(millis));
                 $(".jd_ut").text(add_commas(jd_ut.toFixed(5)));
                 $(".jd_tt").text(add_commas(jd_tt.toFixed(5)));
@@ -541,11 +541,11 @@
                 $(".eot_h").text(h_to_hms(eot_h.toFixed(5)));
                 $(".msd").text(add_commas(msd.toFixed(5)));
                 $(".mtc").text(h_to_hms(mtc));
-                
+
                 $(".curiosity_lmst").text(h_to_hms(curiosity_lmst));
                 $(".curiosity_ltst").text(h_to_hms(curiosity_ltst));
                 $(".curiosity_sol").text(curiosity_sol);
-                
+
                 $(".opportunity_mission").text(h_to_hms(opportunity_mission));
                 $(".opportunity_ltst").text(h_to_hms(opportunity_ltst));
                 $(".opportunity_sol").text(opportunity_sol);
