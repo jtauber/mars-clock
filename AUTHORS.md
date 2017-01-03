@@ -4,4 +4,5 @@ James Tauber
 
 ## Contributors
 
-Dylan McCall
+Dylan McCall  
+Edgar Bonet
