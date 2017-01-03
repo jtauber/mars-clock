@@ -1,6 +1,14 @@
 <html>
     <head>
         <title>Mars Clock by James Tauber</title>
+        <script>
+            // Difference between TAI and UTC. This value should be
+            // updated each time the IERS announces a leap second.
+            var tai_offset = 37;
+
+            // Last time the above value changed.
+            var last_leap_second = "1 January 2017";
+        </script>
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,700,300,400" rel="stylesheet" type="text/css">
 
         <style>
@@ -251,9 +259,10 @@
                     </div>
                     <p>
                         We actually need the Terrestrial Time (TT) Julian Date rather than the UTC-based one.
-                        This means we basically just add the leap seconds which, since 1 July 2012 are 35 + 32.184.
+                        This means we basically just add the leap seconds which, since
+                        <span class="last_leap_second">?</span> are <span class="tai_offset">?</span> + 32.184.
                     </p>
-                    <p>JD<sub>TT</sub> = JD<sub>UT</sub> + (35 + 32.184) / 86,400</p>
+                    <p>JD<sub>TT</sub> = JD<sub>UT</sub> + (<span class="tai_offset">?</span> + 32.184) / 86,400</p>
                 </div>
                 <div class="explanation" id="j2000-explanation">
                     <div class="clock">
@@ -490,7 +499,7 @@
                 $(".utc-time").text(d.toUTCString());
                 var millis = d.getTime();
                 var jd_ut = 2440587.5 + (millis / 8.64E7);
-                var jd_tt = jd_ut + (35 + 32.184) / 86400;
+                var jd_tt = jd_ut + (tai_offset + 32.184) / 86400;
                 var j2000 = jd_tt - 2451545.0;
                 var m = (19.3870 + 0.52402075 * j2000) % 360;
                 var alpha_fms = (270.3863 + 0.52403840 * j2000) % 360;
@@ -551,6 +560,8 @@
                 $(".opportunity_sol").text(opportunity_sol);
             }
             $(function() {
+                $(".last_leap_second").text(last_leap_second);
+                $(".tai_offset").text(tai_offset);
                 update();
                 $(".explanation").hide();
                 setInterval(update, 10);
